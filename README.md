@@ -1,2 +1,2 @@
 # riddler
-Alexa fun riddle skill
+This is an Alexa fun riddle skill 
