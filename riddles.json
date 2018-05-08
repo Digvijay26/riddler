@@ -1,0 +1,258 @@
+[
+    {
+        "riddleid": 1,
+        "question": "I like to twirl my body, but keep my head up high. After I go in, everything becomes tight. What a I?",
+        "question_title": "I like to twirl my body",
+        "riddle_answer": "Screw",
+        "answers": ["Nut", "screw"],
+        "hints": ["Its used to tighten or loosen"]
+    },
+    {
+        "riddleid": 2,
+        "question": "Although I may have eyes, I cannot see. I have a round brown face with lots of acne. Who am I?",
+        "question_title": "I may have eyes, I cannot see",
+        "riddle_answer": "Potato",
+        "answers": ["potatos", "screws"],
+        "hints": ["its a vegetable,You love it when i am fried"]
+    },
+    {
+        "riddleid": 3,
+        "question": "I am a seed with three letters in my name. Take away the last two and I still sound the same. Who am I?\n",
+        "question_title": "I am a seed with three letters",
+        "riddle_answer": "Pea",
+        "answers": ["P", "pea"],
+        "hints": ["I am a small round vegetable"]
+    },
+    {
+        "riddleid": 4,
+        "question": "I am the type of room you cannot enter or leave. Raise from the ground below, I could be poisonous or a delicious treat. Who am I?",
+        "question_title": "room you cannot enter or leave",
+        "riddle_answer": "Mushroom",
+        "answers": ["shroom", "mashrooms", "mashroom"],
+        "hints": ["I look like a small umbrella"]
+    },
+    {
+        "riddleid": 5,
+        "question": "I go up and never come down no matter how hard you wish. As I get higher, more wrinkles crawl onto your face. What am I?",
+        "question_title": "I go up and never come down",
+        "riddle_answer": "Age",
+        "answers": ["age"],
+        "hints": ["I am celebrated every year"]
+    },
+    {
+        "riddleid": 6,
+        "question": "I shrink smaller every time I take a bath. Who am I?",
+        "question_title": "shrink smaller every time I take a bath",
+        "riddle_answer": "Soap",
+        "answers": ["soap"],
+        "hints": ["I clean you up"]
+    },
+    {
+        "riddleid": 7,
+        "question": "I can be long or I can be short. I can be grown and I can be bought. I can be painted or left bare. I can be round or even square. What am I?",
+        "question_title": "I can be long or I can be short",
+        "riddle_answer": "Fingernails",
+        "answers": ["fingernails", "finger nail", "nail", "nails"],
+        "hints": ["Girls apply paint on me"]
+    },
+    {
+        "riddleid": 8,
+        "question": "I make a loud noise when I am changing. I get larger but weigh less when I do. What am I?",
+        "question_title": "I make a loud noise when I am changing",
+        "riddle_answer": "Popcorn",
+        "answers": ["popcorn", "popcorns"],
+        "hints": ["i am famous at the movie intervals"]
+    },
+    {
+        "riddleid": 9,
+        "question": "What gets whiter the dirtier that it gets?",
+        "question_title": "What gets whiter",
+        "riddle_answer": "Chalkboard",
+        "answers": ["chalkboard", "blackboard", "chalk board", "black board", "board"],
+        "hints": ["I am mostly used by the teachers"]
+    },
+    {
+        "riddleid": 10,
+        "question": "What has no beginning, end, or middle?",
+        "question_title": "No beginning, end",
+        "riddle_answer": "Doughnuts",
+        "answers": ["doughnuts", "donut", "doughnut", "donuts"],
+        "hints": ["I am Desert"]
+    },
+    {
+        "riddleid": 11,
+        "question": "What grows when it eats, but dies when it drinks?",
+        "question_title": "What grows when it eats",
+        "riddle_answer": "Candle",
+        "answers": ["candle", "candles"],
+        "hints": ["I am used at night"]
+    },
+    {
+        "riddleid": 12,
+        "question": "You heard me before, yet you hear me again. Then I die, ’til you call me again. What am I?",
+        "question_title": "You heard me before, yet you hear me again",
+        "riddle_answer": "Echo",
+        "answers": ["echo"],
+        "hints": ["I was named by Amazon"]
+    },
+    {
+        "riddleid": 13,
+        "question": "What can you catch but not throw?",
+        "question_title": "catch but not throw",
+        "riddle_answer": "cold",
+        "answers": ["cold"]
+    },
+    {
+        "riddleid": 14,
+        "question": "What grows up while growing down?",
+        "question_title": "grows up while growing ",
+        "riddle_answer": "Plant",
+        "answers": ["plant", "plants"],
+        "hints": ["I am the reason for you to be alive and vice versa"]
+    },
+    {
+        "riddleid": 15,
+        "question": "What travels around the world yet stays in one corner?",
+        "question_title": "travels around the world yet stays",
+        "riddle_answer": "Stamp",
+        "answers": ["stamp", "stamps"],
+        "hints": ["you have to pay to get me"]
+    },
+    {
+        "riddleid": 16,
+        "question": "What’s the difference between here and there?",
+        "question_title": "between here and there",
+        "riddle_answer": "Letter  T",
+        "answers": ["letter t", "t", "tea", letter tea],
+        "hints": ["I come after S"]
+    },
+    {
+        "riddleid": 17,
+        "question": "What two things can you never eat for breakfast?",
+        "question_title": " never eat for breakfast",
+        "riddle_answer": "Lunch and Dinner",
+        "answers": ["lunch and dinner", "dinner and lunch"],
+        "hints": ["I exist every day of you life"]
+    },
+    {
+        "riddleid": 18,
+        "question": "What comes once in a minute, twice in a moment, but never in a thousand years?\n\n",
+        "question_title": "never in a thousand years",
+        "riddle_answer": "Letter M",
+        "answers": ["letter M", "M"],
+        "hints": []
+    },
+    {
+        "riddleid": 19,
+        "question": "Mr. and Mrs. Mustard have six daughters and each daughter has one brother. How many people are in the Mustard family?",
+        "question_title": "Mr. and Mrs. Mustard ",
+        "riddle_answer": "nine",
+        "reason": "There are nine Mustards in the family. Since each daughter shares the same brother, there are six girls, one boy and Mr. and Mrs. Mustard.",
+        "answers": ["nine"],
+        "hints": []
+    },
+    {
+        "riddleid": 20,
+        "question": "What is black when you buy it, red when you use it, and gray when you throw it away?",
+        "question_title": "What is black when you buy it",
+        "riddle_answer": "Charcoal",
+        "answers": ["charcoal"],
+        "hints": []
+    },
+    {
+        "riddleid": 21,
+        "question": "What belongs to you, but other people use it more than you?",
+        "question_title": "belongs to you",
+        "riddle_answer": "Your name",
+        "answers": ["your name", "my name", "name"],
+        "hints": []
+    },
+    {
+        "riddleid": 22,
+        "question": "Samuel was out for a walk when it started to rain. He did not have an umbrella and he wasn't wearing a hat. His clothes were soaked, yet not a single hair on his head got wet. How could this happen?",
+        "question_title": "Samuel was out for a walk",
+        "riddle_answer": "This man is bald",
+        "answers": ["the man is bald", "he is bald", "bald", "samual was bald", "samual is bald", "samual has no hair", "no hair", "bald"],
+        "hints": []
+    },
+    {
+        "riddleid": 23,
+        "question": "Poor people have it. Rich people need it. If you eat it you die. what is it?",
+        "question_title": "Poor people have it",
+        "riddle_answer": "Nothing",
+        "answers": ["nothing"],
+        "hints": []
+    },
+    {
+        "riddleid": 24,
+        "question": "How do you make the number 7 an even number without addition, subtraction, multiplication or division?",
+        "question_title": "make the number 7 an even number",
+        "riddle_answer": "Drop the S",
+        "answers": ["drop the s", "remove letter s", "drop letter s", "remove s", "take out letter s"],
+        "hints": []
+    },
+    {
+        "riddleid": 25,
+        "question": "What runs around the whole yard without moving?",
+        "question_title": "runs around the whole yard",
+        "riddle_answer": "Fence",
+        "answers": ["fence"],
+        "hints": ["I am sometimes dangerous"]
+    },
+    {
+        "riddleid": 26,
+        "question": "I am full of holes but I can still hold water.What am I ?",
+        "question_title": "full of holes",
+        "riddle_answer": "A Sponge",
+        "answers": ["sponge"],
+        "hints": []
+    },
+    {
+        "riddleid": 27,
+        "question": "What's at least 6 inches long, goes in your mouth, and is more fun if it vibrates?",
+        "question_title": "6 inches long",
+        "riddle_answer": "A toothbrush",
+        "answers": ["toothbrush"],
+        "hints": ["You use me twice a day"]
+    },
+    {
+        "riddleid": 28,
+        "question": "You have three stoves: a gas stove, a wood stove, and a coal stove, but only one match. Which should you light first?",
+        "question_title": "You have three stoves",
+        "riddle_answer": "The Match stick",
+        "answers": ["match stick", "match"],
+        "hints": []
+    },
+    {
+        "riddleid": 29,
+        "question": "You use a knife to slice my head and weep beside me when I am dead.What am I ?",
+        "question_title": "use a knife to slice my head",
+        "riddle_answer": "Onion",
+        "answers": ["onion"],
+        "hints": []
+    },
+    {
+        "riddleid": 30,
+        "question": "What food lives at the beach?",
+        "question_title": "lives at the beach",
+        "riddle_answer": "Sandwich",
+        "answers": ["sandwich"],
+        "hints": []
+    },
+    {
+        "riddleid": 31,
+        "question": "Imagine you are in a dark room. How do you get out?",
+        "question_title": "How do you get out",
+        "riddle_answer": "Stop Imagining! haha got you",
+        "answers": ["stop imagining"],
+        "hints": []
+    },
+    {
+        "riddleid": 32,
+        "question": "If you were running a race, and you passed the person in 2nd place, what place would you be in now?",
+        "question_title": "passed the person in 2nd place",
+        "riddle_answer": "second place",
+        "reason": "You would be in 2nd. You thought first place, right? Well, you passed the guy in second place, not first.",
+        "answers": ["2nd place", "second place", "second"]
+    }
+]

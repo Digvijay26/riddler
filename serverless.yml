@@ -1,0 +1,48 @@
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+
+service: riddler-alexa
+
+plugins:
+  - serverless-plugin-optimize
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: us-east-1
+  on_failure: ROLLBACK
+  stage: ${file(./riddlerSkillConfig.json):riddler_env_name}
+  memorySize: 1024
+  deploymentBucket: ${file(./riddlerSkillConfig.json):bucket_name}
+  stackTags:
+    project: riddler-alexa-skill
+
+package:
+  exclude:
+    - README.md
+    - 'speechAssets/**'
+    - 'test/**'
+    - '*.yml'
+    - 'node_modules/aws-sdk/**'
+    - 'node_modules/.bin/*'
+    - 'dist/**'
+    - '.eslintrc'
+  include:
+    - 'index.js'
+    - 'riddlerSkillConfig.json'
+    - 'database_helper.js'
+    - 'package.json'
+    - 'node_modules/**'
+    - 'lib/**'
+
+functions:
+  riddler-alexa-skill:
+    handler: index.handler
+    name: ${file(./riddlerSkillConfig.json):lambda_function_name}
+    description: ${file(./riddlerSkillConfig.json):description}
+    role: arn:aws:iam::144763098142:role/svc_alexa_skill_role
+    events:
+      - alexaSkill: amzn1.ask.skill.6b471c32-bfc6-47a4-9616-f231ba4db455
+    tags:
+      project: riddler-alexa-skill
