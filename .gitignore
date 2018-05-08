@@ -1,0 +1,19 @@
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+tmp-ozip/
+tmp-pkg/
+
+package-lock.json
+serverless.env.yml
+.serverless
+riddlerSkillConfig.json
+.eslintr
+
+/.tmp
+/dist
+*.zip
+.Trashes
