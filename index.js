@@ -59,11 +59,11 @@ app.launch((req, res) => {
       reprompt = 'Our options on Alexa are riddles, question of the day, story puzzles. What would you like to play today?';
       return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').shouldEndSession(false);
     } else if (result !== undefined && result !== 'NO record found!!' && result.riddle_id !== 0) {
-      prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a riddle, ${result.riddle.question_title}. Would you like to listen to the riddle again?`;
+      prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a riddle, ${result.riddle.question_title}. Would you like to listen to a riddle again?`;
       reprompt = `Would you like to solve the riddle, ${result.riddle.question_title}. Would you like to listen to it again?`;
       return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('riddle', result.riddle).session('attempted_riddles', result.attempted_riddles).shouldEndSession(false);
     }
-    prompt = 'Hello. Welcome to Riddler. These lovely little puzzle skill has classic and fun riddles to make you think smarter and crazier. What would you like to play today ? riddles, question of the day or story puzzles?';
+    prompt = 'Hello. Welcome to Riddler. These lovely little puzzle skill has classic and fun riddles to make you think smarter and crazier. What would you like to play today? Riddles, question of the day or story puzzles?';
     reprompt = 'Our options on Alexa are riddles, question of the day and story puzzles. What would you like to play today?';
     return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').shouldEndSession(false);
   }).catch((err) => {
@@ -138,7 +138,7 @@ app.intent('singleUtteranceIntent', {
 app.intent('riddleHintIntent', (req, res) => {
   var prompt;
   if(res.session('riddle').hints.length === 0) {
-    prompt = RandomModule.noHint[ Math.floor(Math.random() * RandomModule.meditationFirst.length) ]
+    prompt = RandomModule.noHint[ Math.floor(Math.random() * RandomModule.noHint.length) ]
   } else {
     prompt = res.session('riddle').hints[0];
   }
