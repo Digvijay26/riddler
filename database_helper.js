@@ -31,16 +31,40 @@ RiddlerHelper.prototype.readRiddleQuestions = (riddleId, callback) => {
   });
 };
 
-RiddlerHelper.prototype.saveUserState = function(deviceId, riddleId, riddle, attemptedRiddles, callback) {
+RiddlerHelper.prototype.readStoryQuestions = (storyId, callback) => {
+  const queryStoryRow = {
+    TableName: 'stories',
+    Key: {
+      'story_id': storyId
+    }
+  };
+
+  return docClient.get(queryStoryRow, (err, data) => {
+    if (err) {
+      callback( JSON.stringify(err, null, 2), null);
+    } else if (!data.Item) {
+      callback('NO record found!!', null);
+    } else {
+      callback(null, data.Item);
+    }
+  });
+};
+
+RiddlerHelper.prototype.saveUserState = function(deviceId, riddleId, riddle, attemptedRiddles, storyId, story, attemptedStories, lastPlayed, callback) {
   console.log('deviceId:', deviceId);
   console.log('attemptedRiddles:', attemptedRiddles);
+  console.log('attemptedStories:', attemptedStories);
   const params = {
     TableName: 'riddle_users',
     Item: {
       'deviceId': deviceId,
       'riddle_id': riddleId,
+      'story_id': storyId,
+      'story': story,
       'riddle': riddle,
-      'attempted_riddles': attemptedRiddles
+      'attempted_riddles': attemptedRiddles,
+      'attempted_stories': attemptedStories,
+      'last_played': lastPlayed
     }
   };
 

@@ -21,10 +21,8 @@ provider:
 package:
   exclude:
     - README.md
-    - 'speechAssets/**'
     - 'test/**'
     - '*.yml'
-    - 'node_modules/aws-sdk/**'
     - 'node_modules/.bin/*'
     - 'dist/**'
     - '.eslintrc'

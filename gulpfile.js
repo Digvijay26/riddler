@@ -111,7 +111,7 @@ gulp.task('dist', (cb) => {
     console.error('❌  Provide a token (-e) with environment name. Example "gulp deploy -e it"');
     process.exit();
   } else {
-    return gulpSequence('createconfig', 'modclean', 'delete-dist', 'package', 'unzip-optimized', 'zip-optimized', 'clean', 'remove', cb);
+    return gulpSequence('createconfig', 'delete-dist', 'package', 'unzip-optimized', 'zip-optimized', 'clean', 'remove', cb);
   }
 });
 
