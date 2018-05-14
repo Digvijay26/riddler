@@ -7,6 +7,7 @@ const QuestionModule = require('./lib/QuestionModule');
 const StoryModule = require('./lib/StoryModule');
 const DatabaseHelper = require('./database_helper');
 const RandomModule = require('./lib/RandomInsertsModule');
+const SynonymsResolveModule = require('./lib/SynonymsResolveModule');
 const databaseHelper = new DatabaseHelper();
 
 // ------------------------------------------
@@ -42,7 +43,6 @@ const getRiddleModuleByIntent = (intentName) => {
 };
 
 // Launch Intent
-
 app.launch((req, res) => {
   const deviceID = req.data.context.System.device.deviceId;
   const random = RandomModule.launch[ Math.floor(Math.random() * RandomModule.launch.length) ];
@@ -58,28 +58,28 @@ app.launch((req, res) => {
       if(result.last_played === 'riddle') {
         prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a riddle, ${result.riddle.question_title}. Would you like to solve this riddle again?`;
         reprompt = `Would you like to solve the riddle, ${result.riddle.question_title}. Would you like to listen to it again?`;
-        return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('riddle', result.riddle).session('puzzle_mode', 'riddle').session('attempted_riddles', result.attempted_riddles).shouldEndSession(false);
+        return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('riddle', result.riddle).session('puzzle_mode', 'riddle').session('attempted_riddles', result.attempted_riddles).session('prompt', prompt).shouldEndSession(false);
       } else if (result.last_played === 'story') {
         prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a mystery, ${result.riddle.question_title}. Would you like to solve this story again?`;
         reprompt = `Would you like to solve the mystery, ${result.riddle.question_title}. Would you like to listen to it again?`;
-        return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('story', result.story).session('puzzle_mode', 'story').session('attempted_stories', result.attempted_stories).shouldEndSession(false);
+        return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('story', result.story).session('puzzle_mode', 'story').session('attempted_stories', result.attempted_stories).session('prompt', prompt).shouldEndSession(false);
       }
     } else if (result !== undefined && result !== 'NO record found!!' && result.last_played === 'riddle') {
       prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a riddle, ${result.riddle.question_title}. Would you like to solve this riddle again?`;
       reprompt = `Would you like to solve the riddle, ${result.riddle.question_title}. Would you like to listen to it again?`;
-      return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('riddle', result.riddle).session('puzzle_mode', 'riddle').session('attempted_riddles', result.attempted_riddles).shouldEndSession(false);
+      return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('riddle', result.riddle).session('puzzle_mode', 'riddle').session('attempted_riddles', result.attempted_riddles).session('prompt', prompt).shouldEndSession(false);
     } else if (result !== undefined && result !== 'NO record found!!' && result.last_played === 'story') {
       prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a mystery, ${result.riddle.question_title}. Would you like to solve this story again?`;
       reprompt = `Would you like to solve the mystery, ${result.riddle.question_title}. Would you like to listen to it again?`;
-      return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('story', result.story).session('puzzle_mode', 'story').session('attempted_stories', result.attempted_stories).shouldEndSession(false);
+      return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('story', result.story).session('puzzle_mode', 'story').session('attempted_stories', result.attempted_stories).session('prompt', prompt).shouldEndSession(false);
     } else if (result !== undefined && result !== 'NO record found!!' && result.riddle_id === 0 && result.story_id === 0) {
       prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. What would you like to play today? Riddles, or story puzzles?`;
-      reprompt = 'Our options on Alexa are riddles, question of the day, story puzzles. What would you like to play today?';
-      return res.say(prompt).reprompt(reprompt).session('riddle', result.riddle).session('intentName', 'launchIntent').shouldEndSession(false);
+      reprompt = 'Our options on Alexa are riddles and story puzzles. What would you like to play today?';
+      return res.say(prompt).reprompt(reprompt).session('riddle', result.riddle).session('intentName', 'launchIntent').session('prompt', prompt).shouldEndSession(false);
     }
     prompt = 'Hello. Welcome to Riddler. These lovely little puzzle skill has classic and fun riddles and mystery stories to make you think smarter and crazier. What would you like to play today? Riddles, or story puzzles?';
-    reprompt = 'Our options on Alexa are riddles, question of the day and story puzzles. What would you like to play today?';
-    return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').shouldEndSession(false);
+    reprompt = 'Our options on Alexa are riddles and story puzzles. What would you like to play today?';
+    return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('prompt', prompt).shouldEndSession(false);
   }).catch((err) => {
     console.error('❌ error during database invocation:', err);
     prompt = 'Sorry, we encountered a problem. Please, try again.';
@@ -87,16 +87,14 @@ app.launch((req, res) => {
   });
 });
 
-
 // Riddle Intent
 app.intent('singleUtteranceIntent', {
   'slots': {
     'GenericSlot': 'GenericType'
   }
-},
-(req, res) => {
+}, (req, res) => {
   let prompt, module;
-
+  console.log('inside single utterance intent:');
   switch(req.session('intentName')) {
     case 'launchIntent':
     switch(SynonymsResolveModule.extract('GenericSlot', req).toLowerCase()) {
@@ -110,12 +108,8 @@ app.intent('singleUtteranceIntent', {
       module = new StoryModule().intentResponse(req, res);
       break;
 
-      case 'question':
-      module = new QuestionModule().intentResponse(req, res);
-      break;
-
       default:
-      prompt = `Im sorry, I didn't get that. Our options on Alexa are <break time=\"1.00s\"/> riddles, question of the day and story puzzles. You can say <break time=\"1.00s\"/> play, followed by the section name. What would you like to play today?`;
+      prompt = `I'm sorry, I didn't get that. Our options on Alexa are <break time="0.20s"/> riddles <break time="0.20s"/> and story puzzles. You can say <break time="0.20s"/>  play, followed by the section name. What would you like to play today?`;
       res.say(prompt).shouldEndSession(false).clearSession(true);
       break;
     }
@@ -138,18 +132,30 @@ app.intent('singleUtteranceIntent', {
     break;
   }
   return module;
-}
-);
+});
 
 // Riddle Hint Intent
-app.intent('riddleHintIntent', (req, res) => {
-  let prompt;
-  const reprompt = 'If you want to listen to the riddle again, just say, Alexa repeat.';
+app.intent('hintIntent', (req, res) => {
+  let prompt, reprompt, noHint;
 
-  if(res.session('riddle').hints.length === 0) {
-    prompt = RandomModule.noHint[ Math.floor(Math.random() * RandomModule.noHint.length) ];
+  if(req.session('puzzle_mode') === 'story') {
+    reprompt = 'If you want to listen to the story again, just say, Alexa repeat.';
+    noHint = req.data.request.locale = 'en-US' ? 'noHintStoryUS' : 'noHintStoryIN';
+
+    if(res.session('story').hints.length === 0) {
+      prompt = RandomModule[noHint][ Math.floor(Math.random() * RandomModule.noHint.length) ];
+    } else {
+      prompt = res.session('story').hints[0];
+    }
   } else {
-    prompt = res.session('riddle').hints[0];
+    reprompt = 'If you want to listen to the riddle again, just say, Alexa repeat.';
+    noHint = req.data.request.locale = 'en-US' ? 'noHintRiddleUS' : 'noHintRiddleIN';
+    
+    if(res.session('riddle').hints.length === 0) {
+      prompt = RandomModule[noHint][ Math.floor(Math.random() * RandomModule.noHint.length) ];
+    } else {
+      prompt = res.session('riddle').hints[0];
+    }
   }
   res.say(prompt).reprompt(reprompt).shouldEndSession(false);
 });
@@ -157,11 +163,22 @@ app.intent('riddleHintIntent', (req, res) => {
 // Repeat the Riddle
 app.intent('AMAZON.RepeatIntent', (req, res) => {
   const riddleSession = res.session('riddle');
-
-  if(riddleSession !== undefined && riddleSession.riddle_id !== 0) {
-    const prompt = riddleSession.question;
-    const reprompt = 'If you are finding it tough, you can ask for hint or to answer the riddle, just say - Alexa, My answer is, followed by your answer.';
-
+  const storySession = res.session('story');
+  let reprompt;
+  
+  if ('puzzle_mode' === 'riddle') {
+    prompt = riddleSession.question;
+    reprompt = 'If you are finding it tough, you can ask for hint or to answer the riddle, just say - Alexa, My answer is, followed by your answer.';
+    res.say(prompt).reprompt(reprompt).shouldEndSession(false);
+  } else if('puzzle_mode' === 'story') {
+    prompt = storySession.question;
+    reprompt = 'If you are finding it tough, you can ask for hint or to answer the story, just say - Alexa, My answer is, followed by your answer.';
+    res.say(prompt).reprompt(reprompt).shouldEndSession(false);
+  } else if(req.session('prompt') !== undefined) {
+    prompt = req.session('prompt');
+    res.say(prompt).reprompt(reprompt).shouldEndSession(false);
+  } else {
+    prompt = 'Hello. Welcome to Riddler. These lovely little puzzle skill has classic and fun riddles and mystery stories to make you think smarter and crazier. What would you like to play today? Riddles, or story puzzles?';
     res.say(prompt).reprompt(reprompt).shouldEndSession(false);
   }
 });
@@ -255,13 +272,19 @@ app.intent('AMAZON.NoIntent', (req, res) => {
   intentResponse.cb(res);
 });
 
-
 // AMAZON Stop Intent
 app.intent('AMAZON.StopIntent', (req, res) => {
   const prompt = 'Had a nice time talking to you. Goodbye.';
 
   res.say(prompt).shouldEndSession(true);
   res.clearSession(true);
+});
+
+// Amazon Help intnet
+app.intent('AMAZON.HelpIntent', (req, res) => {
+  const help = 'You\'re listening to Riddler. I have few fun riddles and stores for you. Once you\'re playing a puzzle, you can repeat, ask for hint or if the puzzle is too tough, just say - i dont know. What would you like to play today? Riddles, or story puzzles?';
+  
+  res.say(help).shouldEndSession(false);
 });
 
 module.exports = app;
