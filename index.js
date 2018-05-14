@@ -73,7 +73,7 @@ app.launch((req, res) => {
       reprompt = `Would you like to solve the mystery, ${result.riddle.question_title}. Would you like to listen to it again?`;
       return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('story', result.story).session('puzzle_mode', 'story').session('attempted_stories', result.attempted_stories).shouldEndSession(false);
     } else if (result !== undefined && result !== 'NO record found!!' && result.riddle_id === 0 && result.story_id === 0) {
-      prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. We have classic and fun riddles and mystery stories to make you think smarter. What would you like to play today? Riddles, or story puzzles?`;
+      prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. What would you like to play today? Riddles, or story puzzles?`;
       reprompt = 'Our options on Alexa are riddles, question of the day, story puzzles. What would you like to play today?';
       return res.say(prompt).reprompt(reprompt).session('riddle', result.riddle).session('intentName', 'launchIntent').shouldEndSession(false);
     }
