@@ -60,8 +60,8 @@ app.launch((req, res) => {
         reprompt = `Would you like to solve the riddle, ${result.riddle.question_title}. Would you like to listen to it again?`;
         return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('riddle', result.riddle).session('puzzle_mode', 'riddle').session('attempted_riddles', result.attempted_riddles).session('prompt', prompt).shouldEndSession(false);
       } else if (result.last_played === 'story') {
-        prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a mystery, ${result.riddle.question_title}. Would you like to solve this story again?`;
-        reprompt = `Would you like to solve the mystery, ${result.riddle.question_title}. Would you like to listen to it again?`;
+        prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a mystery, ${result.story.question_title}. Would you like to solve this story again?`;
+        reprompt = `Would you like to solve the mystery, ${result.story.question_title}. Would you like to listen to it again?`;
         return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('story', result.story).session('puzzle_mode', 'story').session('attempted_stories', result.attempted_stories).session('prompt', prompt).shouldEndSession(false);
       }
     } else if (result !== undefined && result !== 'NO record found!!' && result.last_played === 'riddle') {
@@ -69,13 +69,13 @@ app.launch((req, res) => {
       reprompt = `Would you like to solve the riddle, ${result.riddle.question_title}. Would you like to listen to it again?`;
       return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('riddle', result.riddle).session('puzzle_mode', 'riddle').session('attempted_riddles', result.attempted_riddles).session('prompt', prompt).shouldEndSession(false);
     } else if (result !== undefined && result !== 'NO record found!!' && result.last_played === 'story') {
-      prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a mystery, ${result.riddle.question_title}. Would you like to solve this story again?`;
-      reprompt = `Would you like to solve the mystery, ${result.riddle.question_title}. Would you like to listen to it again?`;
+      prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. You were solving a mystery, ${result.story.question_title}. Would you like to solve this story again?`;
+      reprompt = `Would you like to solve the mystery, ${result.story.question_title}. Would you like to listen to it again?`;
       return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('story', result.story).session('puzzle_mode', 'story').session('attempted_stories', result.attempted_stories).session('prompt', prompt).shouldEndSession(false);
     } else if (result !== undefined && result !== 'NO record found!!' && result.riddle_id === 0 && result.story_id === 0) {
       prompt = ` ${random}! and welcome back to Riddler. We’re happy you’re here. What would you like to play today? Riddles, or story puzzles?`;
       reprompt = 'Our options on Alexa are riddles and story puzzles. What would you like to play today?';
-      return res.say(prompt).reprompt(reprompt).session('riddle', result.riddle).session('intentName', 'launchIntent').session('prompt', prompt).shouldEndSession(false);
+      return res.say(prompt).reprompt(reprompt).session('intentName', 'launchIntent').session('prompt', prompt).shouldEndSession(false);
     }
     prompt = 'Hello. Welcome to Riddler. These lovely little puzzle skill has classic and fun riddles and mystery stories to make you think smarter and crazier. What would you like to play today? Riddles, or story puzzles?';
     reprompt = 'Our options on Alexa are riddles and story puzzles. What would you like to play today?';
@@ -89,11 +89,15 @@ app.launch((req, res) => {
 
 // Riddle Intent
 app.intent('singleUtteranceIntent', {
+  // 'dialog': {
+  //   type: 'delegate'
+  // },
   'slots': {
     'GenericSlot': 'GenericType'
   }
 }, (req, res) => {
   let prompt, module;
+
   console.log('inside single utterance intent:');
   switch(req.session('intentName')) {
     case 'launchIntent':
@@ -164,7 +168,7 @@ app.intent('hintIntent', (req, res) => {
 app.intent('AMAZON.RepeatIntent', (req, res) => {
   const riddleSession = res.session('riddle');
   const storySession = res.session('story');
-  let reprompt;
+  let reprompt, prompt;
   
   if ('puzzle_mode' === 'riddle') {
     prompt = riddleSession.question;
