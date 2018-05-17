@@ -12,6 +12,7 @@ serverless.env.yml
 .serverless
 riddlerSkillConfig.json
 .eslintr
+Archive.zip
 
 /.tmp
 /dist
